@@ -20,6 +20,16 @@ return new class extends Migration {
                 ->index()
                 ->constrained();
 
+            $table->foreignId(column: 'course_id')
+                ->index()
+                ->nullable()
+                ->constrained();
+
+            $table->foreignId(column: 'intake_id')
+                ->index()
+                ->nullable()
+                ->constrained();
+
             $table->string(column: "status");
             $table->string(column: "created_by");
             $table->string(column: "modified_by")->nullable();

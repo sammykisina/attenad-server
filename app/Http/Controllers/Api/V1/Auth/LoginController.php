@@ -24,21 +24,20 @@ class LoginController {
             );
         }
 
-        if (config(key: 'hydra.delete_previous_access_tokens_on_login')) {
-            $user->tokens()->delete();
-        }
+        $user->tokens()->delete();
 
         $role = $user->role()->pluck('slug')->all();
-        $plain_text_token = $user->createToken('checker-api-token', $role)->plainTextToken;
+        $plain_text_token = $user->createToken('attenad-api-token', $role)->plainTextToken;
 
         return response()->json(
             data: [
                 'error' => 0,
-                'message' => 'Welcome back to Checker.',
+                'message' => 'Welcome to attenad.',
                 'user' => [
-                    'name' => $user->name,
+
                     'email' => $user->email,
                     'role' => $role[0],
+                    'uuid' => $user->uuid
                 ],
                 'token' => $plain_text_token
             ]
