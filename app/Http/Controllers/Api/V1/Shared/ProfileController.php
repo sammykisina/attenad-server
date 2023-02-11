@@ -65,7 +65,7 @@ class ProfileController {
           try {
               $student = User::query()
                  ->where('id', $student->id)
-                 ->with(relations: ['role', 'course', 'intake'])
+                 ->with(relations: ['role', 'course', 'intake', 'attendances.intake', 'attendances.course', 'attendances.module'])
                  ->first();
 
               return response()->json(

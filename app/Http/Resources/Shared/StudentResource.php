@@ -6,6 +6,7 @@ namespace App\Http\Resources\Shared;
 
 use App\Http\Resources\Admin\CourseResource;
 use App\Http\Resources\Admin\IntakeResource;
+use App\Http\Resources\Lecturer\AttendanceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StudentResource extends JsonResource {
@@ -33,6 +34,9 @@ class StudentResource extends JsonResource {
                 ),
                 'intake' => new IntakeResource(
                     resource: $this->whenLoaded(relationship: 'intake')
+                ),
+                'attendances' => AttendanceResource::collection(
+                    resource: $this->whenLoaded(relationship: 'attendances')
                 )
             ]
         ];
